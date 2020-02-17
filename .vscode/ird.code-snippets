@@ -1,0 +1,23 @@
+{
+	"ird": {
+		"scope": "javascript,typescript,typescriptreact,javascriptreact",
+		"prefix": "ird",
+		"body": [
+			"import React from 'react';",
+			"import { observer } from 'mobx-react-lite';",
+			"",
+			"export default observer(() => {",
+			"    return <div></div>;",
+			"})"
+		],
+		"description": "Import react and export default"
+	},
+	"iml": {
+		"scope": "javascript,typescript,typescriptreact,javascriptreact",
+		"prefix": "iml",
+		"body": [
+			"import _ from 'lodash';",
+		],
+		"description": "Import lodash"
+	}
+}

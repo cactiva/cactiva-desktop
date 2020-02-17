@@ -1,0 +1,103 @@
+{
+  "name": "cactiva",
+  "productName": "cactiva",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts ."
+  },
+  "keywords": [],
+  "author": "rizky",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "cactiva"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/assets/index.html",
+                  "js": "./src/assets/renderer.ts",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.48",
+    "@electron-forge/maker-deb": "6.0.0-beta.48",
+    "@electron-forge/maker-rpm": "6.0.0-beta.48",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.48",
+    "@electron-forge/maker-zip": "6.0.0-beta.48",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.48",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/lodash": "^4.14.149",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.0.0",
+    "electron": "8.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.0",
+    "file-loader": "^5.0.2",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
+    "node-loader": "^0.6.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "fastify": "^2.12.0",
+    "fs-jetpack": "^2.2.3",
+    "lodash": "^4.17.15",
+    "mobx": "^5.15.4",
+    "mobx-react-lite": "^1.5.2",
+    "office-ui-fabric-react": "^7.89.1",
+    "react": "^16.12.0",
+    "react-dnd-cjs": "^9.5.1",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.9.0",
+    "ts-morph": "^6.0.2"
+  }
+}
