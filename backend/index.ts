@@ -1,9 +1,5 @@
 import { app, BrowserWindow, WebPreferences } from 'electron';
-import path from 'path';
-import chokidar from 'chokidar';
 import { initBackendApi } from './backend';
-import { spawn } from 'child_process';
-import jetpack from 'fs-jetpack';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 const isDev = () => {
