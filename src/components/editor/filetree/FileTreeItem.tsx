@@ -1,23 +1,24 @@
+import { confirm } from '@src/components/dialogs/Confirm';
+import { prompt } from '@src/components/dialogs/Prompt';
+import { api } from '@src/components/libs/api';
 import { extName } from '@src/components/libs/utils';
 import { editor } from '@src/stores/editor';
 import { IProjectTree, project } from '@src/stores/project';
+import { parse } from 'flatted';
 import _ from 'lodash';
 import { observable, toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
+import nodepath from 'path';
 import React from 'react';
 import FileTreeItemLabel from './FileTreeItemLabel';
 import FileTreeItems from './FileTreeItems';
-import { prompt } from '@src/components/dialogs/Prompt';
-import { api } from '@src/components/libs/api';
-import { confirm } from '@src/components/dialogs/Confirm';
 export interface IFileTreeItem {
     item: IProjectTree
     parent: IProjectTree
     level: number
     expanded?: string[]
 }
-import nodepath from 'path';
 
 export const metaTreeItem = observable({
     path: '',
@@ -60,7 +61,7 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                 e.stopPropagation();
                 e.preventDefault();
             }}
-            onClick={() => {
+            onClick={async () => {
                 if (item.type === 'dir') {
                     if (expanded !== undefined) {
                         const idx = expanded.indexOf(item.relativePath);
@@ -72,6 +73,8 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                     }
                 } else {
                     _.set(editor, 'current.tree', item);
+                    const sr = await api('source/open', item.relativePath);
+                    console.log(parse(sr));
                 }
             }} />
 

@@ -9,7 +9,6 @@ import { getImports } from "./utils/getImports";
 import { getHooks } from "./utils/getHooks";
 import { cleanHooks } from "./utils/cleanHooks";
 import { generateSource } from "./utils/generateSource";
-import { IProjectTree } from "@src/stores/project";
 import _ from 'lodash';
 
 
@@ -80,7 +79,9 @@ export class Morph {
     }
 
     getSourceFile(filename: string, isAbsolutePath = false) {
-        const itemName = nodepath.resolve((!isAbsolutePath ? this.getAppPath() : "") + filename);
+        const cpath = nodepath.join((!isAbsolutePath ? this.getAppPath() : ""), filename);
+        const itemName = nodepath.resolve(cpath);
+        console.log(itemName);
         try {
             return this.project.getSourceFileOrThrow(item => {
                 return nodepath.resolve(item.getFilePath()) === itemName;
@@ -208,7 +209,7 @@ export class Morph {
         tree.children = tree.children.map(filterTree).filter((e: any) => !!e);
         return tree;
     }
- 
+
     async reload(): Promise<IMorphResult> {
         process.chdir(this.getAppPath());
         let errors = "";
