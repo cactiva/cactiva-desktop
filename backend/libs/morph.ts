@@ -1,21 +1,20 @@
 import { app } from "electron";
 import jetpack from "fs-jetpack";
-import nodepath from 'path';
-import { Project as TProject, SourceFile, ImportDeclarationStructure, StructureKind, ThisExpression } from "ts-morph";
-import { getEntryPoint, parseJsx } from "./utils/parseJsx";
-import { defaultExport, defaultExportShallow } from "./utils/defaultExport";
-import { replaceReturn } from "./utils/replaceReturn";
-import { getImports } from "./utils/getImports";
-import { getHooks } from "./utils/getHooks";
-import { cleanHooks } from "./utils/cleanHooks";
-import { generateSource } from "./utils/generateSource";
 import _ from 'lodash';
-
+import nodepath from 'path';
+import { ImportDeclarationStructure, Project as TProject, SourceFile, StructureKind } from "ts-morph";
+import { cleanHooks } from "./utils/cleanHooks";
+import { defaultExport, defaultExportShallow } from "./utils/defaultExport";
+import { generateSource } from "./utils/generateSource";
+import { getHooks } from "./utils/getHooks";
+import { getImports } from "./utils/getImports";
+import { getEntryPoint, parseJsx } from "./utils/parseJsx";
+import { replaceReturn } from "./utils/replaceReturn";
 
 interface IMorphResult {
     name: string
     srcPath: string
-    tree: IProjectTree
+    tree: any
 }
 
 export class Morph {
@@ -81,7 +80,6 @@ export class Morph {
     getSourceFile(filename: string, isAbsolutePath = false) {
         const cpath = nodepath.join((!isAbsolutePath ? this.getAppPath() : ""), filename);
         const itemName = nodepath.resolve(cpath);
-        console.log(itemName);
         try {
             return this.project.getSourceFileOrThrow(item => {
                 return nodepath.resolve(item.getFilePath()) === itemName;

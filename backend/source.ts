@@ -11,7 +11,7 @@ export class SourceBackend {
             if (path) {
                 this.path = path;
                 const source = Morph.current?.getSourceFile(nodepath.join(Morph.current.srcPath, path));
-                event.sender.send('source/open', stringify(source));
+                event.sender.send('source/open', source.getFullText());
             }
         })
     }

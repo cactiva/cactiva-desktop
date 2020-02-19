@@ -1,9 +1,11 @@
 import { observable, intercept, toJS } from "mobx";
 import { api } from "@src/components/libs/api";
 import path from 'path';
+import { Project } from "ts-morph";
 
 export class StoreProject {
     name: string = "";
+    morph = new Project();
     src: string = "";
     path: string;
     @observable tree: IProjectTree = {

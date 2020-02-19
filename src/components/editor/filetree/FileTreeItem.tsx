@@ -4,7 +4,7 @@ import { api } from '@src/components/libs/api';
 import { extName } from '@src/components/libs/utils';
 import { editor } from '@src/stores/editor';
 import { IProjectTree, project } from '@src/stores/project';
-import { parse } from 'flatted';
+import { Project } from 'ts-morph';
 import _ from 'lodash';
 import { observable, toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
@@ -73,8 +73,10 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                     }
                 } else {
                     _.set(editor, 'current.tree', item);
-                    const sr = await api('source/open', item.relativePath);
-                    console.log(parse(sr));
+                    const res = await api('source/open', item.relativePath);
+                    project.current?.morph.createSourceFile(item.relativePath, res);
+                    const src = project.current?.morph.getSourceFile(item.relativePath);
+                    console.log(src);
                 }
             }} />
 
