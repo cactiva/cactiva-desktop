@@ -91,6 +91,7 @@
     "fastify": "^2.12.0",
     "fs-jetpack": "^2.2.3",
     "lodash": "^4.17.15",
+    "m-react-splitters": "^1.2.0",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^1.5.2",
     "office-ui-fabric-react": "^7.89.1",
