@@ -33,7 +33,7 @@ export const metaTreeItem = observable({
 })
 
 export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
-    const currentPath = editor.current?.tree.relativePath;
+    const currentPath = editor.file?.relativePath;
     const isExpanded = (expanded || []).indexOf(item.relativePath) >= 0;
     return <>
         <FileTreeItemLabel
@@ -72,11 +72,12 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                         }
                     }
                 } else {
-                    _.set(editor, 'current.tree', item);
+                    editor.file = item;
                     const res = await api('source/open', item.relativePath);
-                    project.current?.morph.createSourceFile(item.relativePath, res);
-                    const src = project.current?.morph.getSourceFile(item.relativePath);
-                    console.log(src);
+                    project.current?.morph.createSourceFile(item.relativePath, res, {
+                        overwrite: true
+                    });
+                    editor.source = project.current?.morph.getSourceFile(item.relativePath);
                 }
             }} />
 

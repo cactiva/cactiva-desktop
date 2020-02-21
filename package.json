@@ -77,8 +77,9 @@
     "electron": "^8.0.1",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.0",
-    "file-loader": "^5.0.2",
+    "file-loader": "^5.1.0",
     "fork-ts-checker-webpack-plugin": "^3.1.1",
+    "monaco-editor-webpack-plugin": "^1.9.0",
     "node-loader": "^0.6.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
@@ -87,6 +88,7 @@
     "typescript": "^3.7.0"
   },
   "dependencies": {
+    "@types/prettier": "^1.19.0",
     "electron-squirrel-startup": "^1.0.0",
     "fastify": "^2.12.0",
     "flatted": "^2.0.1",
@@ -95,11 +97,16 @@
     "m-react-splitters": "^1.2.0",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^1.5.2",
+    "monaco": "^1.201704190613.0",
+    "monaco-editor": "^0.20.0",
     "office-ui-fabric-react": "^7.89.1",
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dnd-cjs": "^9.5.1",
     "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.19",
     "react-icons": "^3.9.0",
+    "react-monaco-editor": "^0.34.0",
     "ts-morph": "^6.0.2"
   }
 }

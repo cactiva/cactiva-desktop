@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: 100%;
+
   .search {
     padding-right: 1px;
     display: flex;
@@ -54,6 +56,7 @@
           flex-direction: row;
           padding: 3px;
           align-items: center;
+          user-select: none;
           height: 20px;
 
           .icon {

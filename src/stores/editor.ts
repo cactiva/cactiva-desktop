@@ -1,10 +1,8 @@
 import { observable } from "mobx";
+import { SourceFile } from "ts-morph";
 import { IProjectTree } from "./project";
 
-interface IEditorFile {
-    tree: IProjectTree
-}
-
 export const editor = observable({
-    current: null as (IEditorFile | null)
+    source: undefined as (SourceFile | undefined),
+    file: undefined as (IProjectTree | undefined)
 })

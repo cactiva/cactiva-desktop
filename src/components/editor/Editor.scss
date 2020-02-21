@@ -10,4 +10,16 @@
     width: 1px;
     min-width: 1px;
   }
+
+  .pane {
+    display: flex;
+  }
+}
+
+.absolute-full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

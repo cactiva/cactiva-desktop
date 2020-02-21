@@ -5,10 +5,14 @@ import Editor from './components/editor/Editor';
 import { useAsyncEffect } from './components/libs/useAsyncEffect';
 import { project, StoreProject } from './stores/project';
 import initUI from "./initUI";
+import { hot, setConfig } from 'react-hot-loader';
 
+setConfig({
+    showReactDomPatchNotification: false
+})
 initUI();
 
-export default observer(() => {
+export default hot(module)(observer(() => {
     const meta = useObservable({
         loading: true
     });
@@ -25,4 +29,4 @@ export default observer(() => {
             : <Editor />}
         <Dialogs />
     </>;
-});
+}));

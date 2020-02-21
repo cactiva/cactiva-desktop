@@ -4,6 +4,8 @@ import './Editor.scss';
 import FileTree from './filetree/FileTree';
 import Splitter from 'm-react-splitters';
 import 'm-react-splitters/lib/splitters.css';
+import Canvas from './canvas/Canvas';
+import ComponentList from './canvas/ComponentList';
 
 export default observer(() => {
     return <div className='editor'>
@@ -14,7 +16,7 @@ export default observer(() => {
             postPoned={false}
         >
             <FileTree />
-            <div></div>
+            <ComponentList />
         </Splitter>
     </div>;
 });
