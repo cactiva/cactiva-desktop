@@ -4,6 +4,7 @@ import { observer, useObservable } from 'mobx-react-lite';
 import React, { useEffect } from 'react';
 import { JsxElement, JsxExpression, JsxFragment, JsxSelfClosingElement, JsxText, Node } from 'ts-morph';
 import formatCode from '@src/components/libs/morph/formatCode';
+import { DefaultButton } from 'office-ui-fabric-react';
 
 export default observer(() => {
     const meta = useObservable({
@@ -25,9 +26,25 @@ export default observer(() => {
             })
         }
     }, [editor.source]);
+    const select = (node: Node) => {
+        editor.breadcrumbs = [];
+        editor.breadcrumbs.push(node);
+    }
     return <div>
-        {meta.list.map((e, idx) => {
-            if (!!e && !e.wasForgotten()) return <pre key={idx}>{formatCode(e.getText())}</pre>
+        {meta.list.map((node, idx) => {
+            if (!!node && !node.wasForgotten()) {
+                if (node instanceof JsxElement) {
+                    return <DefaultButton onClick={() => select(node)}
+                        key={idx}>{node.getOpeningElement().getTagNameNode().getText()}</DefaultButton>
+                } else if (node instanceof JsxSelfClosingElement) {
+                    return <DefaultButton onClick={() => select(node)}
+                        key={idx}>{node.getTagNameNode().getText()}</DefaultButton>
+                } else if (node instanceof JsxFragment) {
+                    return <DefaultButton onClick={() => select(node)}
+                        key={idx}>{'JsxFragment'}</DefaultButton>
+                }
+                return <pre key={idx}>{formatCode(node.getText())}</pre>
+            }
         })}
     </div>;
 })

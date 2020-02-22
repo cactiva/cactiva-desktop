@@ -62,6 +62,7 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                 e.preventDefault();
             }}
             onClick={async () => {
+                editor.breadcrumbs = [];
                 if (item.type === 'dir') {
                     if (expanded !== undefined) {
                         const idx = expanded.indexOf(item.relativePath);

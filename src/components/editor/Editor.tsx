@@ -1,11 +1,12 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
-import './Editor.scss';
-import FileTree from './filetree/FileTree';
 import Splitter from 'm-react-splitters';
 import 'm-react-splitters/lib/splitters.css';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import './Editor.scss';
+import FileTree from './filetree/FileTree';
+import ComponentList from './pane/ComponentList';
+import { editor } from '@src/stores/editor';
 import Canvas from './canvas/Canvas';
-import ComponentList from './canvas/ComponentList';
 
 export default observer(() => {
     return <div className='editor'>
@@ -16,7 +17,9 @@ export default observer(() => {
             postPoned={false}
         >
             <FileTree />
-            <ComponentList />
+            {editor.breadcrumbs.length > 0
+                ? <Canvas node={editor.breadcrumbs[editor.breadcrumbs.length - 1]} />
+                : <ComponentList />}
         </Splitter>
     </div>;
 });
