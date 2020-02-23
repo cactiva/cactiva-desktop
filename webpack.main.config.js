@@ -6,6 +6,7 @@ module.exports = {
   entry: './backend/index.ts',
   // Put your normal webpack config below here
   module: {
+    noParse: /prettier\/parser-typescript/,
     rules: require('./webpack.rules'),
   },
   resolve: {
