@@ -38,6 +38,7 @@ const SingleTag = observer(({ node }: { node: Node }) => {
                 <Divider position="after" node={e as Node} index={idx} />
             </React.Fragment>
         } else if (e instanceof JsxExpression) {
+
             let jsx = (null as unknown) as Node;
             walk(e, (node: Node) => {
                 if (node instanceof JsxSelfClosingElement ||
@@ -49,10 +50,10 @@ const SingleTag = observer(({ node }: { node: Node }) => {
                 return true;
             });
             if (jsx) {
-                return <React.Fragment key={idx}><SingleTag node={jsx} />
+                return <div style={{ border: '1px solid red' }} key={idx}><SingleTag node={jsx} />
                     <pre style={{ fontSize: '9px' }}>{jsx.getText()}</pre>
-                </React.Fragment>
-            } 
+                </div>
+            }
         }
     });
 
