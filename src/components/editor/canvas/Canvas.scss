@@ -3,9 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  cursor: pointer;
+
   > .tagname {
     font-size: 10px;
     padding-top: 3px;
+    user-select: none;
   }
   &.vertical {
     min-height: 30px;
@@ -17,13 +20,17 @@
       height: 5px;
     }
   }
+
+  &:hover {
+    background: rgba(72, 175, 235, 0.185);
+  }
 }
 
 .code-preview {
   margin: 0px 0px 5px 0px;
   border-radius: 3px;
   code {
-    font-family: 'Roboto', monospace !important;
+    font-family: "Roboto", monospace !important;
     font-size: 12px;
   }
 }
