@@ -66,7 +66,18 @@ const SingleTag = observer(({ node, style }: { node: Node, style?: any }) => {
                 </SyntaxHighlighter>
             }
         }
-    });
+        return true;
+      });
+      if (jsx) {
+        return (
+          <div style={{ border: "1px solid red" }} key={idx}>
+            <SingleTag node={jsx} />
+            <pre style={{ fontSize: "9px" }}>{jsx.getText()}</pre>
+          </div>
+        );
+      }
+    }
+  });
 
     return <div className="singletag vertical" style={style}>
         <span className="tagname">{tagName}</span>

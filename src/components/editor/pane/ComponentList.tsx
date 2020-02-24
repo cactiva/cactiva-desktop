@@ -1,10 +1,17 @@
-import { walk } from '@src/components/libs/morph/walk';
-import { editor } from '@src/stores/editor';
-import { observer, useObservable } from 'mobx-react-lite';
-import React, { useEffect } from 'react';
-import { JsxElement, JsxExpression, JsxFragment, JsxSelfClosingElement, JsxText, Node } from 'ts-morph';
-import formatCode from '@src/components/libs/morph/formatCode';
-import { DefaultButton } from 'office-ui-fabric-react';
+import { walk } from "@src/components/libs/morph/walk";
+import { editor } from "@src/stores/editor";
+import { observer, useObservable } from "mobx-react-lite";
+import React, { useEffect } from "react";
+import {
+  JsxElement,
+  JsxExpression,
+  JsxFragment,
+  JsxSelfClosingElement,
+  JsxText,
+  Node
+} from "ts-morph";
+import formatCode from "@src/components/libs/morph/formatCode";
+import { DefaultButton } from "office-ui-fabric-react";
 
 export default observer(() => {
     const meta = useObservable({

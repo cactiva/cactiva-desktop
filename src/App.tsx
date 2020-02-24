@@ -1,32 +1,38 @@
-import { observer, useObservable } from 'mobx-react-lite';
-import React from 'react';
-import Dialogs from './components/dialogs/Dialogs';
-import Editor from './components/editor/Editor';
-import { useAsyncEffect } from './components/libs/useAsyncEffect';
-import { project, StoreProject } from './stores/project';
+import { observer, useObservable } from "mobx-react-lite";
+import React from "react";
+import { hot, setConfig } from "react-hot-loader";
+import Dialogs from "./components/dialogs/Dialogs";
+import Editor from "./components/editor/Editor";
+import { useAsyncEffect } from "./components/libs/useAsyncEffect";
 import initUI from "./initUI";
-import { hot, setConfig } from 'react-hot-loader';
+import { project, StoreProject } from "./stores/project";
 
 setConfig({
-    showReactDomPatchNotification: false
-})
+  showReactDomPatchNotification: false
+});
 initUI();
 
-export default hot(module)(observer(() => {
+export default hot(module)(
+  observer(() => {
     const meta = useObservable({
-        loading: true
+      loading: true
     });
 
     useAsyncEffect(async () => {
-        project.current = new StoreProject(process.cwd());
-        await project.current.reload();
-        meta.loading = false;
-    })
+      project.current = new StoreProject(process.cwd());
+      await project.current.reload();
+      meta.loading = false;
+    });
 
-    return <>
-        {meta.loading
-            ? <img width="100" src='./assets/images/logo.png' />
-            : <Editor />}
+    return (
+      <>
+        {meta.loading ? (
+          <img width="100" src="./assets/images/logo.png" />
+        ) : (
+          <Editor />
+        )}
         <Dialogs />
-    </>;
-}));
+      </>
+    );
+  })
+);
