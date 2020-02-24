@@ -62,7 +62,7 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                 e.preventDefault();
             }}
             onClick={async () => {
-                editor.breadcrumbs = [];
+
                 if (item.type === 'dir') {
                     if (expanded !== undefined) {
                         const idx = expanded.indexOf(item.relativePath);
@@ -72,7 +72,10 @@ export default observer(({ item, parent, level, expanded }: IFileTreeItem) => {
                             expanded.push(item.relativePath);
                         }
                     }
-                } else {
+                } else if (editor.file !== item) {
+                    if (editor.breadcrumbs.length > 0)
+                        editor.breadcrumbs = [];
+
                     editor.file = item;
                     const res = await api('source/open', item.relativePath);
                     project.current?.morph.createSourceFile(item.relativePath, res, {

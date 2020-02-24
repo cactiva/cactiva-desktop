@@ -18,3 +18,12 @@
     }
   }
 }
+
+.code-preview {
+  margin: 0px 0px 5px 0px;
+  border-radius: 3px;
+  code {
+    font-family: 'Roboto', monospace !important;
+    font-size: 12px;
+  }
+}

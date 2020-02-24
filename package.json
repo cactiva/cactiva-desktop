@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "@types/prettier": "^1.19.0",
+    "@types/react-syntax-highlighter": "^11.0.4",
     "electron-squirrel-startup": "^1.0.0",
     "fastify": "^2.12.0",
     "flatted": "^2.0.1",
@@ -107,6 +108,7 @@
     "react-hot-loader": "^4.12.19",
     "react-icons": "^3.9.0",
     "react-monaco-editor": "^0.34.0",
+    "react-syntax-highlighter": "^12.2.1",
     "ts-morph": "^6.0.2"
   }
 }

@@ -17,9 +17,11 @@ export default observer(() => {
             postPoned={false}
         >
             <FileTree />
-            {editor.breadcrumbs.length > 0
-                ? <Canvas node={editor.breadcrumbs[editor.breadcrumbs.length - 1]} />
-                : <ComponentList />}
+            <div style={{ padding: 5 }}>
+                {editor.breadcrumbs.length > 0
+                    ? <Canvas node={editor.breadcrumbs[editor.breadcrumbs.length - 1]} />
+                    : <ComponentList />}
+            </div>
         </Splitter>
     </div>;
 });
