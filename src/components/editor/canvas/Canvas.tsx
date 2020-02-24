@@ -7,6 +7,8 @@ import "./Canvas.scss";
 
 export default observer(({ node }: { node: Node }) => {
     return <div>
-        <SingleTag node={node} />
+        <SingleTag node={node} onClick={(n) => {
+            console.log(n);
+        }} />
     </div>;
 })

@@ -6,7 +6,12 @@ import { walk } from '@src/components/libs/morph/walk';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const SingleTag = observer(({ node, style }: { node: Node, style?: any }) => {
+interface ISingleTag {
+    node: Node,
+    style?: any,
+    onClick?: (node: Node) => void
+}
+const SingleTag = observer(({ node, style, onClick }: ISingleTag) => {
     if (node.wasForgotten()) return null;
 
     let n = null;
@@ -36,7 +41,10 @@ const SingleTag = observer(({ node, style }: { node: Node, style?: any }) => {
             e instanceof JsxSelfClosingElement ||
             e instanceof JsxElement) {
             return <React.Fragment key={idx}>
-                <SingleTag node={e} />
+                <SingleTag onClick={() => {
+                    if (onClick)
+                        onClick(e);
+                }} node={e} />
                 <Divider position="after" node={e as Node} index={idx} />
             </React.Fragment>
         } else if (e instanceof JsxExpression) {
@@ -53,10 +61,17 @@ const SingleTag = observer(({ node, style }: { node: Node, style?: any }) => {
             if (jsx.length > 0) {
                 return <React.Fragment key={idx}>
                     <div style={{ border: '1px dashed red' }} key={idx}>
-                        {jsx.map((j, jix) => (<SingleTag node={j} key={jix} style={{
-                            border: 0,
-                            borderTop: jix > 0 ? '1px dashed red' : 0
-                        }} />))}
+                        {jsx.map((j, jix) => (<SingleTag
+                            onClick={() => {
+                                if (onClick)
+                                    onClick(e);
+                            }}
+                            node={j}
+                            key={jix}
+                            style={{
+                                border: 0,
+                                borderTop: jix > 0 ? '1px dashed red' : 0
+                            }} />))}
                     </div>
                     <Divider position="after" node={e as Node} index={idx} />
                 </React.Fragment>
@@ -79,7 +94,14 @@ const SingleTag = observer(({ node, style }: { node: Node, style?: any }) => {
     }
   });
 
-    return <div className="singletag vertical" style={style}>
+    return <div
+        onClick={(e) => {
+            if (onClick)
+                onClick(node);
+            e.stopPropagation();
+        }}
+        className="singletag vertical"
+        style={style}>
         <span className="tagname">{tagName}</span>
         <div className="children">
             <Divider position="before" node={nodeArray[0] as Node} index={0} />
