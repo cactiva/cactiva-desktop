@@ -93,7 +93,7 @@
     "@types/prettier": "^1.19.0",
     "@types/react-syntax-highlighter": "^11.0.4",
     "electron-squirrel-startup": "^1.0.0",
-    "fastify": "^2.12.0",
+    "fastify": "^2.15.1",
     "flatted": "^2.0.1",
     "fs-jetpack": "^2.2.3",
     "lodash": "^4.17.15",
